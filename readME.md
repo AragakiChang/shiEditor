@@ -3,7 +3,7 @@
 
 ## 引入方法
 
-1. 通过使用 webpack
+通过使用 webpack
   ```
     import Editor from 'shiEditor/index'
 
@@ -13,7 +13,7 @@
     console.log(editor.renderText())
   ```
 
-2. 通过 script　引入
+通过 script　引入
 　```
     <script src="./dist/bundle.js"></script>
     <script>
