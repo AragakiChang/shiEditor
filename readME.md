@@ -3,21 +3,21 @@
 
 ## 引入方法
 
-通过使用 webpack
-  ```
-    import Editor from 'shiEditor/index'
+### 通过使用 webpack  
+        ```
+            import Editor from 'shiEditor/index'
 
-    let root = document.querySelector('.root')
-    let editor = new Editor(root)
+            let root = document.querySelector('.root')
+            let editor = new Editor(root)
 
-    console.log(editor.renderText())
-  ```
+            console.log(editor.renderText())
+        ```
 
-通过 script　引入
-　```
-    <script src="./dist/bundle.js"></script>
-    <script>
-        let root = document.querySelector('.root')
-        let editor = new _shi_Editor(root)
-    </script>
-  ```
+### 通过 script 引入  
+        ```
+            <script src="./dist/bundle.js"></script>
+            <script>
+                let root = document.querySelector('.root')
+                let editor = new _shi_Editor(root)
+            </script>
+        ```
