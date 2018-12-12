@@ -1,0 +1,97 @@
+.s-e-container {
+    width: 1200px;
+    height: 800px;
+    margin: 20px auto;
+
+    .active {
+        display: block !important;
+    }
+
+    .s-e-textbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 1200px;
+        height: 50px;
+
+        .s-e-button {
+            width: 80px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            background: lightblue;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+ 
+        .s-e-button:hover {
+            background: orange;
+        }
+    }
+
+    .s-e-textContent {
+        display: flex;
+        flex-shrink: 0;
+        width: 1200px;
+        height: 750px;
+
+        .s-e-textInput {
+            box-sizing: border-box;
+            border: 1px solid orange;
+            width: 600px;
+            height: 750px;
+            font-size: 14px;
+        }
+
+        .s-e-textShower {
+            box-sizing: border-box;
+            border: 1px solid orange;
+            width: 600px;
+            height: 750px;
+            overflow: auto;
+        }
+    }
+
+    .s-e-picInput {
+        display: none;
+        position: fixed;
+        width: 450px;
+        height: 180px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-275px, -90px);
+        background: white;
+        border: 1px lightblue solid;
+
+        #s-e-pic-submit {
+            height: 30px;
+            width: 100%;
+            background: lightgreen;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+        }
+    }
+
+    .s-e-urlInput {
+        display: none;
+        position: fixed;
+        width: 450px;
+        height: 180px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-275px, -90px);
+        background: white;
+        border: 1px lightblue solid;
+
+        #s-e-url-submit {
+            height: 30px;
+            width: 100%;
+            background: lightgreen;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+        }
+    }
+}
