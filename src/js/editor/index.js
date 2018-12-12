@@ -189,6 +189,4 @@ class Editor {
     }
 }
 
-window.Editor = Editor
-
 export default Editor

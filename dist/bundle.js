@@ -2557,8 +2557,6 @@ var Editor = function () {
     return Editor;
 }();
 
-window.Editor = Editor;
-
 exports.default = Editor;
 
 /***/ }),
