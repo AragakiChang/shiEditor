@@ -98,7 +98,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/_css-loade
 
 
 // module
-exports.push([module.i, ".s-e-container {\n  width: 1200px;\n  height: 800px;\n  margin: 20px auto;\n}\n.s-e-container .active {\n  display: block !important;\n}\n.s-e-container .s-e-textbar {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  width: 1200px;\n  height: 50px;\n}\n.s-e-container .s-e-textbar .s-e-button {\n  width: 80px;\n  height: 40px;\n  text-align: center;\n  line-height: 40px;\n  background: lightblue;\n  font-weight: 600;\n  cursor: pointer;\n  border-radius: 5px;\n}\n.s-e-container .s-e-textbar .s-e-button:hover {\n  background: orange;\n}\n.s-e-container .s-e-textContent {\n  display: flex;\n  flex-shrink: 0;\n  width: 1200px;\n  height: 750px;\n}\n.s-e-container .s-e-textContent .s-e-textInput {\n  box-sizing: border-box;\n  border: 1px solid orange;\n  width: 600px;\n  height: 750px;\n  font-size: 14px;\n}\n.s-e-container .s-e-textContent .s-e-textShower {\n  box-sizing: border-box;\n  border: 1px solid orange;\n  width: 600px;\n  height: 750px;\n  overflow: auto;\n}\n.s-e-container .s-e-picInput {\n  display: none;\n  position: fixed;\n  width: 450px;\n  height: 180px;\n  top: 50%;\n  left: 50%;\n  transform: translate(-275px, -90px);\n  background: white;\n  border: 1px lightblue solid;\n}\n.s-e-container .s-e-picInput #s-e-pic-submit {\n  height: 30px;\n  width: 100%;\n  background: lightgreen;\n  text-align: center;\n  line-height: 30px;\n  cursor: pointer;\n}\n.s-e-container .s-e-urlInput {\n  display: none;\n  position: fixed;\n  width: 450px;\n  height: 180px;\n  top: 50%;\n  left: 50%;\n  transform: translate(-275px, -90px);\n  background: white;\n  border: 1px lightblue solid;\n}\n.s-e-container .s-e-urlInput #s-e-url-submit {\n  height: 30px;\n  width: 100%;\n  background: lightgreen;\n  text-align: center;\n  line-height: 30px;\n  cursor: pointer;\n}\n", ""]);
+exports.push([module.i, ".s-e-container {\n  width: 1200px;\n  height: 800px;\n  margin: 20px auto;\n}\n.s-e-container .active {\n  display: block !important;\n}\n.s-e-container .s-e-textbar {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  width: 1200px;\n  height: 50px;\n}\n.s-e-container .s-e-textbar .s-e-button {\n  width: 80px;\n  height: 40px;\n  text-align: center;\n  line-height: 40px;\n  background: lightblue;\n  font-weight: 600;\n  cursor: pointer;\n  border-radius: 5px;\n}\n.s-e-container .s-e-textbar .s-e-button:hover {\n  background: orange;\n}\n.s-e-container .s-e-textContent {\n  display: flex;\n  flex-shrink: 0;\n  width: 1200px;\n  height: 750px;\n}\n.s-e-container .s-e-textContent .s-e-textInput {\n  box-sizing: border-box;\n  border: 1px solid orange;\n  width: 600px;\n  height: 750px;\n  font-size: 14px;\n  overflow: auto;\n}\n.s-e-container .s-e-textContent .s-e-textInput > div {\n  position: relative;\n  background: #a9f2ec;\n  margin-bottom: 2px;\n  padding-left: 5px;\n  height: 30px;\n  line-height: 30px;\n}\n.s-e-container .s-e-textContent .s-e-textShower {\n  box-sizing: border-box;\n  border: 1px solid orange;\n  width: 600px;\n  height: 750px;\n  overflow: auto;\n}\n.s-e-container .s-e-picInput {\n  display: none;\n  position: fixed;\n  width: 450px;\n  height: 180px;\n  top: 50%;\n  left: 50%;\n  transform: translate(-275px, -90px);\n  background: white;\n  border: 1px lightblue solid;\n}\n.s-e-container .s-e-picInput #s-e-pic-submit {\n  height: 30px;\n  width: 100%;\n  background: lightgreen;\n  text-align: center;\n  line-height: 30px;\n  cursor: pointer;\n}\n.s-e-container .s-e-urlInput {\n  display: none;\n  position: fixed;\n  width: 450px;\n  height: 180px;\n  top: 50%;\n  left: 50%;\n  transform: translate(-275px, -90px);\n  background: white;\n  border: 1px lightblue solid;\n}\n.s-e-container .s-e-urlInput #s-e-url-submit {\n  height: 30px;\n  width: 100%;\n  background: lightgreen;\n  text-align: center;\n  line-height: 30px;\n  cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -2388,6 +2388,10 @@ var Editor = function () {
 
         _classCallCheck(this, Editor);
 
+        if (window.navigator.userAgent.indexOf('Firefox') > -1) {
+            throw new Error('do not support Firefox !');
+        }
+
         if (container.childNodes.length !== 0) {
             throw new Error('container should not has content !');
         }
@@ -2404,7 +2408,7 @@ var Editor = function () {
             strike: (0, _createButton2.default)('strike'),
             delete: (0, _createButton2.default)('delete'),
             ul: (0, _createButton2.default)('ul'),
-            ol: (0, _createButton2.default)('ul'),
+            ol: (0, _createButton2.default)('ol'),
             gap: (0, _createButton2.default)('insertGap'),
             pic: (0, _createButton2.default)('insertPic'),
             url: (0, _createButton2.default)('insertUrl')
@@ -2451,7 +2455,7 @@ var Editor = function () {
 
         container.appendChild(frg);
         this.init();
-        console.log(this.selection.getRange().startContainer);
+        // console.log(this.selection.getRange().startContainer)
     }
 
     _createClass(Editor, [{
@@ -2475,13 +2479,15 @@ var Editor = function () {
     }, {
         key: 'initText',
         value: function initText() {
-            var selection = this.selection;
-            var textInput = this.textInput;
-            var textShower = this.textShower;
+            var selection = this.selection,
+                textInput = this.textInput,
+                textShower = this.textShower;
 
             textInput.addEventListener('blur', function (e) {
-                // console.dir(selection)
+                // console.log(e)
+                // console.dir('blur')
                 selection.saveRange();
+                // console.log(selection.getRange())
             }, false);
 
             textInput.addEventListener('keyup', function (e) {
@@ -2511,6 +2517,19 @@ var Editor = function () {
                     }
                 }
             });
+
+            textInput.addEventListener('paste', function (e) {
+                e.preventDefault();
+                var text = null;
+                if (window.clipboardData && clipboardDate.setData) {
+                    // IE
+                    text = window.clipboardData.getData('text');
+                } else {
+                    text = (e.originalEvent || e).clipboardData.getData('text/plain') || prompt('在这里输入文本');
+                }
+                document.execCommand("insertText", false, text);
+                textShower.innerHTML = (0, _marked2.default)(textInput.innerText);
+            }, false);
         }
 
         //图片和 URL提交页面
@@ -3008,14 +3027,12 @@ var Selection = function () {
     _createClass(Selection, [{
         key: 'initRange',
         value: function initRange() {
-            if (!this._currentRange) {
-                var range = document.createRange();
-                var div = this.editor.textInput.children[0];
-                range.setStart(div, 0);
-                range.setEnd(div, 0);
-                window.getSelection().addRange(range);
-                this.saveRange(range);
-            }
+            var range = document.createRange();
+            var div = this.editor.textInput.children[0];
+            range.setStart(div, 0);
+            range.setEnd(div, 0);
+            window.getSelection().addRange(range);
+            this.saveRange(range);
         }
     }, {
         key: 'getRange',
@@ -3034,6 +3051,7 @@ var Selection = function () {
             if (selection.rangeCount === 0) return;
 
             var range = selection.getRangeAt(0);
+            // console.log(this.editor.textInput.hasChildNodes(range.commonAncestorContainer))
             if (this.editor.textInput.hasChildNodes(range.commonAncestorContainer)) {
                 this._currentRange = range;
             }
@@ -3097,7 +3115,7 @@ var Selection = function () {
             if (tags === null) {
                 throw new Error('you should get h1 - h6 to the function');
             }
-            // console.log(this.getRange().startContainer)
+            // console.log(this.getRange())
 
             var startNode = this._currentRange.startContainer,
                 startOffset = this._currentRange.startOffset,
@@ -3113,7 +3131,7 @@ var Selection = function () {
                 return;
             }
             if (data.substring(0, i) === c) {
-                console.log(this._currentRange);
+                // console.log(this._currentRange)
                 startNode.data = data.substring(i);
                 var soff = startOffset - i < 0 ? startOffset : startOffset - i;
                 this._currentRange.setStart(startNode, soff);
@@ -3314,7 +3332,7 @@ var Selection = function () {
                 // 节点的文本内容
             begin = null,
                 last = null,
-                index = 0;
+                index = 1;
 
             if (startNode.children && startNode.children.length === 1 && startNode.innerHTML === '<br>') {
                 alert('请先选择内容！');
@@ -3376,25 +3394,31 @@ var Selection = function () {
                 div1 = document.createElement('div'),
                 div2 = document.createElement('div'),
                 br = document.createElement('br'),
-                g = document.createTextNode('---');
+                g = document.createTextNode('---'),
+                node = null;
 
             div1.append(br);
             div2.append(g);
             frg.append(div1);
             frg.append(div2);
 
-            this._currentRange.insertNode(frg);
+            if (this._currentRange.startContainer.nodeType === 3) {
+                node = this._currentRange.startContainer.parentNode;
+            } else {
+                node = this._currentRange.startContainer;
+            }
+            node = node.sibling;
+
+            this.editor.textInput.insertBefore(frg, node);
+            this.editor.renderText();
         }
     }, {
         key: 'insertPic',
         value: function insertPic(alt, title, url) {
             var frg = document.createDocumentFragment(),
-                div = document.createElement('div'),
                 text = document.createTextNode('![' + alt + '](' + url + ' "' + title + '")');
 
-            div.append(text);
-            frg.append(div);
-
+            frg.append(text);
             this._currentRange.insertNode(frg);
             this.editor.renderText();
         }
@@ -3402,12 +3426,9 @@ var Selection = function () {
         key: 'insertUrl',
         value: function insertUrl(name, title, url) {
             var frg = document.createDocumentFragment(),
-                div = document.createElement('div'),
                 text = document.createTextNode('[' + name + '](' + url + ' "' + title + '")');
 
-            div.append(text);
-            frg.append(div);
-
+            frg.append(text);
             this._currentRange.insertNode(frg);
             this.editor.renderText();
         }

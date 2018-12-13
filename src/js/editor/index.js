@@ -9,6 +9,11 @@ import '../../less/index.less'
 
 class Editor {
     constructor(container) {
+
+        if (window.navigator.userAgent.indexOf('Firefox') > -1) {
+            throw new Error('do not support Firefox !')
+        }
+
         if (container.childNodes.length !== 0) {
             throw new Error('container should not has content !')
         }
@@ -25,7 +30,7 @@ class Editor {
             strike: create('strike'),
             delete: create('delete'),
             ul: create('ul'),
-            ol: create('ul'),
+            ol: create('ol'),
             gap: create('insertGap'),
             pic: create('insertPic'),
             url: create('insertUrl')
@@ -98,7 +103,7 @@ class Editor {
 
         container.appendChild(frg)
         this.init()
-        console.log(this.selection.getRange().startContainer)
+        // console.log(this.selection.getRange().startContainer)
     }
 
     init () {
@@ -116,13 +121,15 @@ class Editor {
     }
 
     initText() {
-        let selection = this.selection
-        let textInput = this.textInput
-        let textShower = this.textShower
+        let selection = this.selection,
+            textInput = this.textInput,
+            textShower = this.textShower
 
         textInput.addEventListener('blur', function(e) {
-            // console.dir(selection)
+            // console.log(e)
+            // console.dir('blur')
             selection.saveRange()
+            // console.log(selection.getRange())
         }, false)
         
         textInput.addEventListener('keyup', function (e) {
@@ -151,7 +158,20 @@ class Editor {
                     }
                 }
             }
-        })  
+        }) 
+
+        textInput.addEventListener('paste', function(e) {
+            e.preventDefault()
+            let text = null
+            if (window.clipboardData && clipboardDate.setData) {
+                // IE
+                text = window.clipboardData.getData('text')
+            } else {
+                text = (e.originalEvent || e).clipboardData.getData('text/plain') || prompt('在这里输入文本');
+            }
+            document.execCommand("insertText", false, text);
+            textShower.innerHTML = Marked(textInput.innerText)
+        }, false)
     }
 
     //图片和 URL提交页面

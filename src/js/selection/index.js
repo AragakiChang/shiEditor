@@ -6,14 +6,12 @@ class Selection {
     }
 
     initRange () {
-        if (!this._currentRange) {
-            let range = document.createRange()
-            let div = this.editor.textInput.children[0]
-            range.setStart(div, 0)
-            range.setEnd(div, 0)
-            window.getSelection().addRange(range)
-            this.saveRange(range)
-        }
+        let range = document.createRange()
+        let div = this.editor.textInput.children[0]
+        range.setStart(div, 0)
+        range.setEnd(div, 0)
+        window.getSelection().addRange(range)
+        this.saveRange(range)
     }
 
     getRange() {
@@ -30,6 +28,7 @@ class Selection {
         if (selection.rangeCount === 0) return
         
         const range = selection.getRangeAt(0)
+        // console.log(this.editor.textInput.hasChildNodes(range.commonAncestorContainer))
         if (this.editor.textInput.hasChildNodes(range.commonAncestorContainer)) {
             this._currentRange = range
         }
@@ -86,7 +85,7 @@ class Selection {
         if (tags === null) {
             throw new Error('you should get h1 - h6 to the function')
         }
-        // console.log(this.getRange().startContainer)
+        // console.log(this.getRange())
 
         let startNode = this._currentRange.startContainer,
             startOffset = this._currentRange.startOffset,
@@ -103,7 +102,7 @@ class Selection {
             return
         }
         if (data.substring(0,i) === c) {
-            console.log(this._currentRange)
+            // console.log(this._currentRange)
             startNode.data = data.substring(i)
             let soff = startOffset - i < 0 ? startOffset : startOffset - i
             this._currentRange.setStart(startNode, soff)
@@ -298,7 +297,7 @@ class Selection {
             nodeContent = null,  // 节点的文本内容
             begin = null,
             last = null,
-            index = 0
+            index = 1
 
 
             if (startNode.children && startNode.children.length === 1 && startNode.innerHTML === '<br>') {
@@ -360,36 +359,39 @@ class Selection {
             div1 = document.createElement('div'),
             div2 = document.createElement('div'),
             br = document.createElement('br'),
-            g = document.createTextNode('---')
+            g = document.createTextNode('---'),
+            node = null
 
         div1.append(br)
         div2.append(g)
         frg.append(div1)
         frg.append(div2)
 
-        this._currentRange.insertNode(frg)
+        if (this._currentRange.startContainer.nodeType === 3) {
+            node = this._currentRange.startContainer.parentNode
+        } else {
+            node = this._currentRange.startContainer
+        }
+        node = node.sibling
+
+        this.editor.textInput.insertBefore(frg, node)
+        this.editor.renderText()
     }
 
     insertPic(alt, title, url) {
         let frg = document.createDocumentFragment(),
-            div = document.createElement('div'),
             text = document.createTextNode(`![${alt}](${url} "${title}")`)
 
-        div.append(text)
-        frg.append(div)
-
+        frg.append(text)
         this._currentRange.insertNode(frg)
         this.editor.renderText()
     }
 
     insertUrl(name, title, url) {
         let frg = document.createDocumentFragment(),
-            div = document.createElement('div'),
             text = document.createTextNode(`[${name}](${url} "${title}")`)
-        
-        div.append(text)
-        frg.append(div)
 
+        frg.append(text)
         this._currentRange.insertNode(frg)
         this.editor.renderText()
     }
